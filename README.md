@@ -54,4 +54,4 @@ Examples:
 - Be written as production-ready code. You will write production code.
 - Be easy to grow and easy to add new functionality.
 - Have notes attached, explaining the solution and why certain things are included and others are left out.
-- If submitted as a compressed package, its size must not exceed 20MB.
+- It must not contain executable or object files. Just source files, documentation and data files are allowed.
