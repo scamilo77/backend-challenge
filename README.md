@@ -55,3 +55,59 @@ Examples:
 - Be easy to grow and easy to add new functionality.
 - Have notes attached, explaining the solution and why certain things are included and others are left out.
 - It must not contain executable or object files. Just source files, documentation and data files are allowed.
+
+
+**How to execute in Unix-Based:**
+
+- Install .NET Core SDK
+
+Linux: https://dotnet.microsoft.com/download/linux-package-manager/debian9/sdk-current
+
+MacOS: https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.107-macos-x64-installer
+
+- Edit Checkout.API.csproj file, updating RuntimeIdentifiers tag with your distribution
+
+Ex: <RuntimeIdentifiers>win10-x64;osx.10.12-x64;debian.8-x64</RuntimeIdentifiers>
+
+This configurations runs on Windows 10 64 bit, osx 10.12 64 bit and Debian 8 64 bit
+
+- After installing the SDK, open the CLI (Command Line Interface)
+https://docs.microsoft.com/pt-br/dotnet/core/tools/index?tabs=netcore2x
+
+- Browse to the directory that contains CheckoutApi.sln file
+- Execute the commands:
+dotnet restore
+dotnet build
+dotnet run
+
+- The console must show that the server is running and listening at "http://127.0.0.1:8080"
+
+- Use a HTTP Client (like Postman) in order to call the API
+
+Executions:
+
+- [POST] Create Basket: http://localhost:8080/api/basket/create
+Response: StatusCode 200, {"basketId":"480bf32f-c6d5-4928-a007-5789bbb695b8"}
+
+- [PUT] Add Items to Basket: http://localhost:8080/api/basket/add/<basketId>
+Request Body JSON (1 object per request): 
+		{
+			"code" : "MUG",
+			"name" : "Cabify Coffee Mug",
+			"price" : 7.50,
+			"quantity" : 5
+		}
+
+Response: StatusCode 200, "Added 5 Cabify Coffee Mug to the basket"
+
+- [DELETE] Delete Basket: http://localhost:8080/api/basket/delete/<basketId>
+
+Response: StatusCode 200, "Basket ce3d522d-fde5-4f12-a8c5-fd72b18e5718 deleted successfully"
+
+- [GET] Get Basket: http://localhost:8080/api/basket/get/<basketId>
+
+Response JSON:
+		{
+			"Items" : "VOUCHER, TSHIRT, VOUCHER, VOUCHER, MUG, TSHIRT, TSHIRT",
+			"Total": "74.50€"
+		}
