@@ -1,0 +1,5 @@
+
+*.lock
+*.ide
+src/CheckoutApi/.vs/CheckoutApi/v15/Server/sqlite3/storage.ide-shm
+src/CheckoutApi/.vs/CheckoutApi/v15/Server/sqlite3/storage.ide-wal
